@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--  Todo using State and component -->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>replit</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <input type="text" placeholder="Enter your Todo"></input>
+    <button onclick="addTodo()" >Add Todo</button>
+    <button onclick="deleteLastTodo()"> Delete last Todo</button>
+    <button onclick="deleteFirstTodo()"> Delete first Todo</button>
+    <div id="todos"></div>
+
+
+    <script>
+        let todos = [];
+
+        function addTodo() {
+            todos.push({
+                title: document.querySelector('input').value
+
+            })
+            document.querySelector('input').value ='';
+           
+            render();
+           
+
+        }
+
+        function deleteLastTodo(){
+            todos.splice(todos.length-1,1);
+            render();
+
+        }
+
+        function deleteFirstTodo(){
+            todos.splice(0,1);
+            render();
+
+        }
+
+        function deleteTodo(index){
+            todos.splice(index,1); // index , noOfElement
+            render();
+        
+       
+    }
+
+       
+
+
+        function createTodoComponent(todo,index) {
+            
+            let divEle = document.createElement('div');
+            let h1Ele = document.createElement('h1');
+            let btnEle = document.createElement('button');
+            btnEle.innerHTML = 'Delete';
+            btnEle.onclick = function(){
+                deleteTodo(index);
+            }
+            h1Ele.innerHTML = todo.title;
+            divEle.appendChild(h1Ele);
+            divEle.appendChild(btnEle);
+            return divEle;
+
+        }
+
+        function render() {
+            document.querySelector('#todos').innerHTML = ''
+            for (let i = 0; i < todos.length; i++) {
+                const divEle = createTodoComponent(todos[i],i);
+
+                document.querySelector('#todos').appendChild(divEle);
+            }
+
+        }
+
+       
+
+    </script>
+</body>
+
+</html>

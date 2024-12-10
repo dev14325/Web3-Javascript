@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <!-- Adding element -->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h1>Todo list</h1>
+
+  <div id="todos">
+
+    <div id="todo-1">
+      <h4>1. Take class</h4>
+      <button onclick="deleteTodo(1)">delete</button>
+    </div>
+
+    <div id="todo-2">
+      <h4>2. Go out to eat</h4>
+      <button onclick="deleteTodo(2)">delete</button>
+    </div>
+
+</div>
+  
+  <div>
+    <input type="text" id="todoInput" placeholder="Enter your todo here"></input>
+    <button onclick="AddTodo()">Add Todo</button>
+  </div>
+
+</body>
+
+<script>
+    function deleteTodo(index){
+        
+      let element = document.getElementById('todo-'+index);
+      if(element){
+              element.parentNode.removeChild(element);
+      }
+
+}
+
+    function AddTodo(){
+        let content = document.getElementById('todoInput');
+        let todoText = content.value.trim();
+        if(todoText===''){
+            alert("Please enter a todo item !");
+            return;
+        }
+        
+        // counting current todo to generate new todo 
+        const todoContainer = document.getElementById('todos');
+        const newtodoId = todoContainer.children.length + 1;
+
+        let divNode = document.createElement('div');
+        divNode.id =  'todo-' +  newtodoId;
+        divNode.innerHTML = `<h4>${newtodoId}. ${todoText}</h4>
+         <button onclick="deleteTodo(${newtodoId})">delete</button>`;
+
+       
+        todoContainer.appendChild(divNode);
+        content.value = '';
+
+    }
+  
+</script>
+
+</html>

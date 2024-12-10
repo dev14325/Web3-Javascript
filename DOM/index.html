@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--  fetching and deleting element -->
+<html>
+	
+	<head>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width">
+	  <title>replit</title>
+	  <link href="style.css" rel="stylesheet" type="text/css" />
+	</head>
+	
+	<body>
+	  <h1>Todo list</h1>
+	  <h4>1. Take class</h4>
+	  <h4>2. Go out to eat</h4>
+	  <div>
+	    <input type="text"></input>
+	    <button>Add Todo</button>
+	  </div>
+	  <script>
+       const h4content = document.querySelectorAll('h4')[1]; // 2. Go out to eat
+       let number = parseInt(h4content.innerHTML.split('')[0]);
+
+       setInterval(() => {
+        number++;
+        h4content.innerHTML = `${number}. Go out to eat`;
+       }, 1000);
+      </script>
+	</body>
+	
+</html>
